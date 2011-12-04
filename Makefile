@@ -69,7 +69,7 @@ install:
 
 .PHONY: tests
 tests:
-	nosetests -w rmtoo -v --with-coverage -s \
+	bin/test -w rmtoo -v --with-coverage -s \
 		--cover-package=rmtoo.lib,rmtoo.output,rmtoo.modules
 
 .PHONY: deb
@@ -81,3 +81,11 @@ last_test:
 	nosetests -w rmtoo -v -s \
 		tests/blackbox-test/bb004-test/test-bb004.py
 
+bootstrap.py:
+	wget http://svn.zope.org/*checkout*/zc.buildout/trunk/bootstrap/bootstrap.py
+
+bin/buildout: bootstrap.py
+	python bootstrap.py --distribute
+
+buildout: bin/buildout
+	bin/buildout -v

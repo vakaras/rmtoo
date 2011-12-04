@@ -85,4 +85,7 @@ setup(name=package, version=version,
       scripts=["bin/rmtoo", "bin/rmtoo-normalize-dependencies",
                "bin/rmtoo-configuration-convert",
                "bin/rmtoo-pricing-graph"],
+      entry_points = {
+              'console_scripts': ['rmtoo = rmtoo.run:main'],
+              },
      )
